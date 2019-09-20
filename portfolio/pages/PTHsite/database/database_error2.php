@@ -77,6 +77,7 @@
             <h2><a id="hidemore" onclick="hideStuff('hidemore');hideStuff('error');showStuff('showmore')">hide details</a></h2>
             <img src="images/gremlin.gif"><br>
             <img src="../images/gremlin.gif">
+            <br>
             <button onclick="goBack()">Go Back</button>
             
 

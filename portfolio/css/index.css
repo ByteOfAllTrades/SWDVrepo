@@ -1,0 +1,58 @@
+
+body{
+    background-image: linear-gradient(to right, #051937, #003143, #214648, #495a51, #6b6d65);
+    margin-right: 80px;
+    margin-left:80px;
+    color: white;
+}
+form{
+    color:white;
+}
+#head{
+    background-color: #333;
+    color: white
+}
+#main{
+    background-color: #333;
+    color: white
+}
+#cradle{
+background-image:url('../images/newton.gif');
+  background-size:100%;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  height:55%;
+  width:100%;
+}
+h1{
+    background-color: #333;
+    color: white
+}
+/*Style for navbar*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }
