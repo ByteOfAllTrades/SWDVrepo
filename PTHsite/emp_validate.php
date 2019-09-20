@@ -3,13 +3,23 @@
  *Keeps out the riff raff
  *Also removes local storage item hasrunbefore 
  */
-require_once '..\PTHsite\database\database_1.php';
-$query = 'SELECT * FROM employee
-                       ORDER BY employeeID';
-$statement = $db->prepare($query);
-$statement->execute();
-$employees = $statement->fetchAll();
-$statement->closeCursor();
+$lifetime = 60 * 60 * 24;
+session_set_cookie_params($lifetime, '/');
+session_start();
+
+if (empty($_SESSION['user'])) {
+    $_SESSION['pass'] = null;
+}
+if (empty($_SESSION['pass'])) {
+    $_SESSION['pass'] = null;
+}
+
+// $query = 'SELECT * FROM employee
+//                        ORDER BY employeeID';
+// $statement = $db->prepare($query);
+// $statement->execute();
+// $employees = $statement->fetchAll();
+// $statement->closeCursor();
 ?>
 <html>
 
@@ -44,14 +54,13 @@ $statement->closeCursor();
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">&#127968;Home</a>
-        <a href ="lemp.php">&#9741; Employee List</a>
     </div>
     <h1><span style="color:white;" onclick="openNav()">&nbsp;&#9776;</span></h1>
     <center>
         <h1 style="color:white;">Enter Credentials</h1>
     </center>
     <center>
-        <form name="form1" method="post" action="emp.php">
+        <form name="form1" method="post" action="handoff.php">
             First Name <br>
             <input type="text" name="uname" placeholder="Username" required>
             <br>
@@ -61,9 +70,11 @@ $statement->closeCursor();
             <br>
             <label for="eid" style="color:white;">Select employee ID</label>
             <select name="eid" id="empid">
-                <?php foreach ($employees as $employee) : ?>
+                <!-- <?php foreach ($employees as $employee) : ?>
                     <option value="<?php echo $employee['employeeID']; ?>"><?php echo $employee['employeeID']; ?></option>
-                <?php endforeach ?>
+                <?php endforeach ?> --> this is commented out to allow the login page to load in prod
+                <option value="1">1</option>
+                <option value="2">2</option>
             </select>
             <br>
             <br>

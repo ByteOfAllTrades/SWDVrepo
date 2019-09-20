@@ -8,7 +8,18 @@
 
 <head>
     <title>Potters Tea house</title>
+    <style>
+        body {
+            background-image: linear-gradient(to right, #282b2f, #20262b, #172227, #0e1e21, #031a1b);
+            font-family: 'Raleway', sans-serif;
+            color: #FFFFFF;
+        }
 
+        #strip {
+            background-image: linear-gradient(to right top, #abb6a6, #a8b4a0, #a6b29a, #a4af94, #a3ad8d);
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -32,6 +43,13 @@
         }
     </style>
     <script>
+        function hideStuff(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function showStuff(id) {
+            document.getElementById(id).style.display = 'block';
+        }
         function goBack() {
    window.history.back();
 }
@@ -40,20 +58,29 @@
 
 <!-- the body section -->
 
-<body>
-    <div id="mySidenav" class="sidenav">
+<body onload="hideStuff('hidemore');hideStuff('error');">
+    <!-- <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">&#127968;Home</a>
     </div>
-    <h1><span style="color:white;" onclick="openNav()">&nbsp;&#9776;</span></h1>
+    <h1><span style="color:white;" onclick="openNav()">&nbsp;&#9776;</span></h1> -->
     <center>
         <header>
             <h1>Potters Tea House</h1>
         </header>
 
         <main>
-            <h1>Incorrect Credentials</h1>
+            <h1>Database Error</h1>
+            <h2>We apologise for the inconvenience, we are expiriencing some technical difficulties.</h2>
+            <p id="error" style="background-color: yellow; color: black;"><?php echo $error_message ?></p>
+            <h2><a id="showmore" onclick="hideStuff('showmore');showStuff('hidemore');showStuff('error');">show details</a></h2>
+            <h2><a id="hidemore" onclick="hideStuff('hidemore');hideStuff('error');showStuff('showmore')">hide details</a></h2>
+            <img src="images/gremlin.gif"><br>
+            <img src="../images/gremlin.gif">
             <button onclick="goBack()">Go Back</button>
+            
+
+
         </main>
     </center>
 </body>

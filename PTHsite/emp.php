@@ -2,9 +2,13 @@
 /*
 Employee accessible database modification form
 */
+if (session_id() == ""){
+    session_start();
+}
 require_once '..\PTHsite\database\database.php';
 require_once '..\PTHsite\database\functions.php'; // requires database
-$eid = filter_input(INPUT_POST, 'eid'); //gets employee Id from post
+$eid = $_SESSION['eid']; //gets employee Id from post
+
 $query = 'SELECT * FROM contact WHERE emID = :eid
                        ORDER BY contactID'; //selects contacts assigned to that employee
 $statement = $db->prepare($query); //prepares query
@@ -82,7 +86,7 @@ $statement->closeCursor(); //closes
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">&#127968;Home</a>
         <a href ="lemp.php">&#9741; Employee List</a>
-        <a href="emp_validate.php">&#9967;Employee</a>
+        <a href="emp_validate.php">&#9967;Log Out</a>
     </div>
     <h1><span style="color:white;" onclick="openNav()">&nbsp;&#9776;</span></h1>
 
@@ -133,6 +137,7 @@ $statement->closeCursor(); //closes
                     </th>
                     <th>Delete Comment</th>
                     <th>Modify Comment</th>
+                    <th>Delete Contact</th>
                 </tr>
                 <?php foreach ($contacts as $contact) : ?>
                     <tr>
@@ -161,6 +166,14 @@ $statement->closeCursor(); //closes
                                 <input type="hidden" name="contact_id" value="<?php echo $contact['contactID']; ?>">
                                 <input type="hidden" name="eid" value="<?php echo $eid ?>">
                                 <input type="submit" value="Modify"> <input type="text" name="ccom">
+                            </form>
+                        </td>
+                        <td>
+                        <form action="actions\delete_contact.php" method="post">
+                                <input type="hidden" name="contact_id" value="<?php echo $contact['contactID']; ?>">
+                                <input type="hidden" name="eid" value="<?php echo $eid ?>">
+                                <input type="submit" value="Delete Contact"
+                                ">
                             </form>
                         </td>
                     </tr>
